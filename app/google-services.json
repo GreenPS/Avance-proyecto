@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "974540459684",
+    "project_id": "greenps-d8234",
+    "storage_bucket": "greenps-d8234.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974540459684:android:65e0125460d8e4b099a031",
+        "android_client_info": {
+          "package_name": "com.example.greenps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "974540459684-9av38v4ei5u7udlhoch4f7ekdb8u5i3r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfG60qoYqtyyVPMz8Jfe0YmzkO5387ysk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "974540459684-9av38v4ei5u7udlhoch4f7ekdb8u5i3r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
