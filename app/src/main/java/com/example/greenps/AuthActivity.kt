@@ -34,7 +34,8 @@ class AuthActivity : AppCompatActivity() {
                 ).addOnCompleteListener {
                     if (it.isSuccessful) {
                         //string vacio, no deberia pasar
-                        showTest(it.result?.user?.email ?: "", ProviderType.BASIC)
+                        showMain()
+                        //showTest(it.result?.user?.email ?: "", ProviderType.BASIC)
                     } else {
                         showAlert()
                     }
@@ -49,7 +50,8 @@ class AuthActivity : AppCompatActivity() {
                 ).addOnCompleteListener {
                     if (it.isSuccessful) {
                         //string vacio, no deberia pasar
-                        showTest(it.result?.user?.email ?: "", ProviderType.BASIC)
+                        showMain()
+                        //showTest(it.result?.user?.email ?: "", ProviderType.BASIC)
                     } else {
                         showAlert()
                     }
@@ -68,6 +70,16 @@ class AuthActivity : AppCompatActivity() {
         dialog.show()
     }
 
+    private fun showAlert1(){
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("flag")
+        builder.setMessage("flagg")
+        builder.setPositiveButton("Aceptar", null)
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
+
     private fun showTest(email: String, provider: ProviderType){
 
         val testIntent = Intent(this, TestActivity::class.java).apply {
@@ -75,5 +87,10 @@ class AuthActivity : AppCompatActivity() {
             putExtra("provider", provider.name)
         }
         startActivity(testIntent)
+    }
+
+    private fun showMain(){
+        val mainIntent = Intent(this, MainActivity::class.java)
+        startActivity(mainIntent)
     }
 }

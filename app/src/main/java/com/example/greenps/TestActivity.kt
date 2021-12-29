@@ -2,6 +2,7 @@ package com.example.greenps
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.greenps.databinding.ActivityAuthBinding
 import com.example.greenps.databinding.ActivityTestBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -15,7 +16,9 @@ class TestActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_test)
+        //setContentView(R.layout.activity_test)
+        binding = ActivityTestBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val bundle = intent.extras
         val email = bundle?.getString("email")
@@ -25,7 +28,7 @@ class TestActivity : AppCompatActivity() {
 
     private fun setup(email: String, provider: String){
         binding.emailTextView.text = email
-        binding.passwprdTextView.text = provider
+        binding.passwordTextView.text = provider
 
         binding.logOutButton.setOnClickListener{
             FirebaseAuth.getInstance().signOut()
