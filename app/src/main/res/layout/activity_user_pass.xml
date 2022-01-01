@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".View.UserPass">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:background="#4D8D6E"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:textSize="40dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="GreenPS"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="-10dp"
+            android:text="descubre la naturaleza"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="30dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Ingresa a tu cuenta personal :"/>
+
+        <EditText
+            android:id="@+id/txt_email_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="30dp"
+            android:layout_marginBottom="-10dp"
+            android:background="@drawable/edittext"
+            android:hint="E-mail"/>
+
+        <EditText
+            android:id="@+id/txt_pass_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="30dp"
+            android:layout_marginTop="-10dp"
+            android:background="@drawable/edittext"
+            android:hint="Contraseña"/>
+
+        <Button
+            android:id="@+id/btn_login_login"
+            android:layout_width="250dp"
+            android:layout_height="90dp"
+            android:padding="30dp"
+            android:layout_marginTop="-30dp"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:textColor="#ffffff"
+            android:text="Ingresar"
+            android:background="@drawable/rectangle1"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginBottom="50dp"
+            android:text="-----------------------  Ingresa con :  -----------------------"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Google"
+            android:layout_gravity="bottom"
+            android:textColor="@color/black"
+            android:layout_marginHorizontal="100dp"
+            android:backgroundTint="#ffffff"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

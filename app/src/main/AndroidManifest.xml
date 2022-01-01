@@ -14,16 +14,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GreenPS">
         <activity
+            android:name=".View.Register"
+            android:exported="false" />
+        <activity
+            android:name=".View.UserPass"
+            android:exported="false" />
+        <activity
             android:name=".View.Login"
             android:exported="false" />
         <activity
             android:name=".Comentarios"
             android:exported="false"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Perfil"
             android:exported="false"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
