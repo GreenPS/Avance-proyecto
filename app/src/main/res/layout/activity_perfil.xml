@@ -59,7 +59,7 @@
         android:gravity="center"
         android:orientation="vertical"
         android:padding="30dp"
-        android:layout_marginTop="-200dp">
+        android:layout_marginTop="-150dp">
         <EditText
             android:id="@+id/txt_name_profile"
             android:layout_width="match_parent"
