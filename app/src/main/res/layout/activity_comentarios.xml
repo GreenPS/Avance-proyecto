@@ -8,14 +8,15 @@
     tools:context=".Comentarios"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#4D8D6E"
-        android:padding="30dp">
+        android:padding="10dp"
+        android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/comentarios"
+            android:layout_weight="1"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:paddingRight="50dp"
@@ -33,333 +34,67 @@
             android:textColor="#FFFFFF" />
 
 
-    </RelativeLayout>
+    </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="20dp">
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center">
 
         <TextView
-            android:id="@+id/cantidadComentarios"
-            android:layout_width="220dp"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
             android:paddingLeft="10dp"
             android:text="Comentarios:"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/tree"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_centerVertical="true"
+            android:textAlignment="center"
             android:layout_gravity="center"
-            android:layout_toEndOf="@+id/cantidadComentarios"
-            android:paddingTop="10dp"
-            android:src="@drawable/tree" />
-
+            android:gravity="center"
+            android:textStyle="bold" />
         <TextView
+            android:layout_weight="1"
             android:id="@+id/conteo"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_toEndOf="@+id/tree"
-            android:paddingTop="8dp"
             android:text="6"
             android:textColor="#000000"
             android:textSize="30sp"
             android:textStyle="bold" />
 
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:src="@drawable/tree" />
 
-    </RelativeLayout>
+
+
+
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="5dp"
-            android:orientation="vertical">
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="320dp"
-                android:layout_height="120dp"
-                android:layout_weight="1"
-                android:layout_margin="10dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:id="@+id/Parque1"
-                        android:layout_width="190dp"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="40dp"
-                        android:text="Parque 1:"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:id="@+id/tre2"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_gravity="right"
-                        android:layout_marginStart="23dp"
-                        android:layout_toEndOf="@+id/Parque1"
-                        android:src="@drawable/tree" />
-
-                    <Button
-                        android:layout_width="50dp"
-                        android:layout_height="40dp"
-                        android:layout_below="@+id/tre2"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_toEndOf="@+id/Parque1"
-                        android:backgroundTint="#83ABD6"
-                        android:text="Ir" />
-
-                </RelativeLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="320dp"
-                android:layout_height="120dp"
-                android:layout_weight="1"
-                android:layout_margin="10dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:id="@+id/Parque2"
-                        android:layout_width="190dp"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="40dp"
-                        android:text="Parque 2:"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:id="@+id/tree22"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_gravity="right"
-                        android:layout_marginStart="23dp"
-                        android:layout_toEndOf="@+id/Parque2"
-                        android:src="@drawable/tree" />
-
-                    <Button
-                        android:layout_width="50dp"
-                        android:layout_height="40dp"
-                        android:layout_below="@+id/tree22"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_toEndOf="@+id/Parque2"
-                        android:backgroundTint="#83ABD6"
-                        android:text="Ir" />
-
-                </RelativeLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="320dp"
-                android:layout_height="120dp"
-                android:layout_weight="1"
-                android:layout_margin="10dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:id="@+id/Parque3"
-                        android:layout_width="190dp"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="40dp"
-                        android:text="Parque 3:"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:id="@+id/tree3"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_gravity="right"
-                        android:layout_marginStart="23dp"
-                        android:layout_toEndOf="@+id/Parque3"
-                        android:src="@drawable/tree" />
-
-                    <Button
-                        android:layout_width="50dp"
-                        android:layout_height="40dp"
-                        android:layout_below="@+id/tree3"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_toEndOf="@+id/Parque3"
-                        android:backgroundTint="#83ABD6"
-                        android:text="Ir" />
-
-                </RelativeLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="320dp"
-                android:layout_height="120dp"
-                android:layout_weight="1"
-                android:layout_margin="10dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:id="@+id/Parque4"
-                        android:layout_width="190dp"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="40dp"
-                        android:text="Parque 4:"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:id="@+id/tree4"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_gravity="right"
-                        android:layout_marginStart="23dp"
-                        android:layout_toEndOf="@+id/Parque4"
-                        android:src="@drawable/tree" />
-
-                    <Button
-                        android:layout_width="50dp"
-                        android:layout_height="40dp"
-                        android:layout_below="@+id/tree4"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_toEndOf="@+id/Parque4"
-                        android:backgroundTint="#83ABD6"
-                        android:text="Ir" />
-
-                </RelativeLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="320dp"
-                android:layout_height="120dp"
-                android:layout_weight="1"
-                android:layout_margin="10dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:id="@+id/Parque5"
-                        android:layout_width="190dp"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="40dp"
-                        android:text="Parque 5:"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:id="@+id/tree5"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_gravity="right"
-                        android:layout_marginStart="23dp"
-                        android:layout_toEndOf="@+id/Parque5"
-                        android:src="@drawable/tree" />
-
-                    <Button
-                        android:layout_width="50dp"
-                        android:layout_height="40dp"
-                        android:layout_below="@+id/tree5"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_toEndOf="@+id/Parque5"
-                        android:backgroundTint="#83ABD6"
-                        android:text="Ir" />
-
-                </RelativeLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="320dp"
-                android:layout_height="120dp"
-                android:layout_weight="1"
-                android:layout_margin="10dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:id="@+id/Parque6"
-                        android:layout_width="190dp"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="40dp"
-                        android:text="Parque 6:"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:id="@+id/tree6"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_gravity="right"
-                        android:layout_marginStart="23dp"
-                        android:layout_toEndOf="@+id/Parque6"
-                        android:src="@drawable/tree" />
-
-                    <Button
-                        android:layout_width="50dp"
-                        android:layout_height="40dp"
-                        android:layout_below="@+id/tree6"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_toEndOf="@+id/Parque6"
-                        android:backgroundTint="#83ABD6"
-                        android:text="Ir" />
-
-                </RelativeLayout>
-
-            </com.google.android.material.card.MaterialCardView>
+        </androidx.recyclerview.widget.RecyclerView>
 
 
 
 
-        </LinearLayout>
+
     </ScrollView>
 
 
