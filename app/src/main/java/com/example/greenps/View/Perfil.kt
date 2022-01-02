@@ -1,7 +1,8 @@
-package com.example.greenps
+package com.example.greenps.View
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.greenps.R
 
 class Perfil : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

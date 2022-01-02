@@ -27,7 +27,7 @@
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".Perfil"
+            android:name=".View.Perfil"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
 
