@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:padding="30dp"
             android:layout_marginBottom="-30dp"
-            android:background="@drawable/editText"
+            android:background="@drawable/editback"
             android:hint="Nombre"/>
 
         <EditText
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:padding="30dp"
             android:layout_marginBottom="-30dp"
-            android:background="@drawable/editText"
+            android:background="@drawable/editback"
             android:hint="E-mail"/>
 
         <EditText
@@ -72,14 +72,14 @@
             android:layout_height="wrap_content"
             android:padding="30dp"
             android:layout_marginBottom="-30dp"
-            android:background="@drawable/editText"
+            android:background="@drawable/editback"
             android:hint="Contraseña"/>
         <EditText
             android:id="@+id/txt_pass_confirm_reg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="30dp"
-            android:background="@drawable/editText"
+            android:background="@drawable/editback"
             android:hint="Repite la Contraseña"/>
 
         <Button

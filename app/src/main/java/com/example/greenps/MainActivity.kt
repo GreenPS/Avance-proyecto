@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.greenps.View.Perfil
@@ -30,8 +31,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         createFragment()
-        val botonPerfil = findViewById<ImageButton>(R.id.profileButton)
-        val botonComent = findViewById<ImageButton>(R.id.comentbutton)
+        val botonPerfil = findViewById<CardView>(R.id.profilebutton)
+        val botonComent = findViewById<ImageButton>(R.id.menubtn)
 
         botonComent.setOnClickListener(){
             val intent = Intent(this, Comentarios::class.java)
