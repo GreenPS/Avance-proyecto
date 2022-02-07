@@ -69,16 +69,17 @@
             android:hint="Contraseña"/>
 
         <Button
-            android:id="@+id/btn_login_login"
+            android:id="@+id/btn_login"
             android:layout_width="250dp"
             android:layout_height="90dp"
-            android:padding="30dp"
-            android:layout_marginTop="-30dp"
-            android:textAlignment="center"
             android:layout_gravity="center"
-            android:textColor="#ffffff"
+            android:layout_marginTop="-30dp"
+            android:background="@drawable/rectangle1"
+            android:padding="30dp"
             android:text="Ingresar"
-            android:background="@drawable/rectangle1"/>
+            android:textAlignment="center"
+            android:textColor="#ffffff" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

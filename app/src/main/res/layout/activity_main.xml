@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#EEEEEE"
-        android:padding="30dp"
+        android:padding="25dp"
         android:orientation="horizontal">
 
         <TextView
@@ -25,7 +25,7 @@
             android:text="GreenPS"
             android:textColor="#4D8D6E"
             android:textSize="30dp" />
-        <androidx.cardview.widget.CardView
+        <!--androidx.cardview.widget.CardView
             android:id="@+id/profilebutton"
             android:layout_weight="2"
             android:layout_width="match_parent"
@@ -33,19 +33,20 @@
             android:elevation="10dp"
             android:background="#004D8D6E">
             <ImageButton
+                android:id="@+id/salir"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
                 android:background="#4D8D6E"
                 android:src="@drawable/male" />
-        </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView-->
         <ImageButton
             android:id="@+id/menubtn"
             android:layout_weight="2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#EEEEEE"
-            android:src="@drawable/menuincon" />
+            android:src="@drawable/exit30" />
     </LinearLayout>
 
     <fragment
@@ -76,10 +77,12 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
                 <ImageButton
+                    android:id="@+id/mapacenter"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="right"
+                    android:src="@drawable/mapa30"
                     android:background="#ffffff" />
                 <TextView
                     android:layout_weight="3"
@@ -101,10 +104,12 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
                 <ImageButton
+                    android:id="@+id/blog"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="right"
+                    android:src="@drawable/blog30"
                     android:background="#ffffff"/>
                 <TextView
                     android:layout_weight="3"
@@ -126,10 +131,12 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
                 <ImageButton
+                    android:id="@+id/perfile"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="right"
+                    android:src="@drawable/male"
                     android:background="#ffffff" />
                 <TextView
                     android:layout_weight="3"
@@ -151,10 +158,12 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
                 <ImageButton
+                    android:id="@+id/comments"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="right"
+                    android:src="@drawable/menuincon"
                     android:background="#ffffff"/>
                 <TextView
                     android:layout_weight="3"
@@ -162,7 +171,7 @@
                     android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Lugares"/>
+                    android:text="Comentarios"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 

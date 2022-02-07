@@ -17,10 +17,18 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.auth.FirebaseAuth
+import com.example.greenps.databinding.ActivityMainBinding
+import com.example.greenps.databinding.ActivityRegisterBinding
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
 
     private lateinit var map:GoogleMap
+    private lateinit var binding: ActivityMainBinding
+
+    enum class ProviderType{
+        BASIC
+    }
 
     companion object{
         const val REQUEST_CODE_LOCATION = 0
@@ -29,22 +37,34 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        // setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         createFragment()
-        val botonPerfil = findViewById<CardView>(R.id.profilebutton)
-        val botonComent = findViewById<ImageButton>(R.id.menubtn)
+        setup()
 
-        botonComent.setOnClickListener(){
+
+        //val botonPerfil = findViewById<CardView>(R.id.profilebutton)
+        //val botonComent = findViewById<ImageButton>(R.id.menubtn)
+
+        binding.comments.setOnClickListener(){
             val intent = Intent(this, Comentarios::class.java)
             startActivity(intent)
         }
 
-        botonPerfil.setOnClickListener(){
+        binding.perfile.setOnClickListener(){
             val intent = Intent(this, Perfil::class.java)
             startActivity(intent)
         }
 
 
+    }
+
+    private fun setup(){
+        binding.menubtn.setOnClickListener{
+            FirebaseAuth.getInstance().signOut()
+            onBackPressed()
+        }
     }
 
     private fun createFragment() {
