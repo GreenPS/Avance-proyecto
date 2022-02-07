@@ -1,24 +1,48 @@
 package com.example.greenps
 
+import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.greenps.View.Perfil
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.database.*
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import java.util.*
+import kotlin.collections.HashMap
+import com.google.firebase.database.DataSnapshot
+
+
+
+
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
+
+
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    val mDatabase = Firebase.database
+    private lateinit var database: DatabaseReference
+
+
+
+
+
 
     private lateinit var map:GoogleMap
 
@@ -34,6 +58,13 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         val botonPerfil = findViewById<CardView>(R.id.profilebutton)
         val botonComent = findViewById<ImageButton>(R.id.menubtn)
 
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        mDatabase
+        database = Firebase.database.reference
+
+
+        subirLatLonFirebase()
+
         botonComent.setOnClickListener(){
             val intent = Intent(this, Comentarios::class.java)
             startActivity(intent)
@@ -45,6 +76,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         }
 
 
+
     }
 
     private fun createFragment() {
@@ -54,6 +86,31 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
 
     override fun onMapReady(googleMap: GoogleMap) {
         map= googleMap
+
+
+
+        val markListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (snapshot in dataSnapshot.children) {
+
+
+
+                }
+
+
+                }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+
+            }
+        }
+        database.addValueEventListener(markListener)
+
+
+
+
+
+
         createMarker()
         map.setOnMyLocationButtonClickListener(this)
         map.setOnMyLocationClickListener(this)
@@ -73,7 +130,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
     }
 
     private fun isLocationPermissionGranted()= ContextCompat.checkSelfPermission(
-        this, android.Manifest.permission.ACCESS_FINE_LOCATION
+        this, Manifest.permission.ACCESS_FINE_LOCATION
     ) == PackageManager.PERMISSION_GRANTED
 
 
@@ -82,10 +139,10 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         if(isLocationPermissionGranted()){
             if (ActivityCompat.checkSelfPermission(
                     this,
-                    android.Manifest.permission.ACCESS_FINE_LOCATION
+                    Manifest.permission.ACCESS_FINE_LOCATION
                 ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
                     this,
-                    android.Manifest.permission.ACCESS_COARSE_LOCATION
+                    Manifest.permission.ACCESS_COARSE_LOCATION
                 ) != PackageManager.PERMISSION_GRANTED
             ) {
                 // TODO: Consider calling
@@ -104,10 +161,10 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
     }
 
     private fun requestLocationPermission (){
-        if(ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.ACCESS_FINE_LOCATION)){
+        if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)){
             Toast.makeText(this, "Ve a ajustes y acepta los permisos", Toast.LENGTH_SHORT).show()
         }else{
-            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),REQUEST_CODE_LOCATION)
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),REQUEST_CODE_LOCATION)
         }
     }
 
@@ -122,10 +179,10 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
             REQUEST_CODE_LOCATION -> if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED ) {
                 if (ActivityCompat.checkSelfPermission(
                         this,
-                        android.Manifest.permission.ACCESS_FINE_LOCATION
+                        Manifest.permission.ACCESS_FINE_LOCATION
                     ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
                         this,
-                        android.Manifest.permission.ACCESS_COARSE_LOCATION
+                        Manifest.permission.ACCESS_COARSE_LOCATION
                     ) != PackageManager.PERMISSION_GRANTED
                 ) {
                     // TODO: Consider calling
@@ -146,6 +203,46 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
             else -> {}
         }
 
+
+
+    }
+
+    private  fun subirLatLonFirebase() {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return
+        }
+        fusedLocationClient.lastLocation
+            .addOnSuccessListener { location : Location? ->
+                // Got last known location. In some rare situations this can be null.
+                if(location !=null) {
+                    Log.e("Latitud: ", (+location.latitude).toString()+" Longitud: " + location.longitude);
+
+                    val latlang:HashMap<String,Double> = HashMap<String,Double>()
+
+
+
+                    latlang.put("latitud", location.latitude)
+                    latlang.put("longitud", location.longitude )
+
+                    database.child("usuarios").push().setValue(latlang)
+
+
+                }
+            }
     }
 
     override fun onResumeFragments() {
