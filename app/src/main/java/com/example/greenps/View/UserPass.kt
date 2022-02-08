@@ -30,7 +30,7 @@ class UserPass : AppCompatActivity() {
                 ).addOnCompleteListener {
                     if (it.isSuccessful) {
                         //string vacio, no deberia pasar
-                        showTest(it.result?.user?.email ?: "", MainActivity.ProviderType.BASIC)
+                        showTest(binding.txtEmailLogin.text.toString())
                     } else {
                         showAlert()
                     }
@@ -39,11 +39,10 @@ class UserPass : AppCompatActivity() {
         }
     }
 
-    private fun showTest(email: String, provider: MainActivity.ProviderType){
+    private fun showTest(email: String){
 
         val testIntent = Intent(this, MainActivity::class.java).apply {
             putExtra("email", email)
-            putExtra("provider", provider.name)
         }
         startActivity(testIntent)
     }

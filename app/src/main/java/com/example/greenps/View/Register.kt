@@ -28,17 +28,18 @@ class Register : AppCompatActivity() {
     }
     private fun setup() {
         database = Firebase.database.reference
-        database.child("registros").child(binding.txtEmailLogin.text.toString())
         binding.btnRegister.setOnClickListener {
             if (binding.txtEmailLogin.text.isNotEmpty() && binding.txtPassReg.text.isNotEmpty()) {
                 mAuth!!.createUserWithEmailAndPassword(binding.txtEmailLogin.text.toString(), binding.txtPassReg.text.toString())
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
-                            database!!.child("Nombre").setValue(binding.txtName.text)
-                            database!!.child("Bio").setValue("")
-                            database!!.child("Email").setValue(binding.txtEmailLogin.text)
-                            database!!.child("Pass").setValue(binding.txtPassReg.text)
-                            showTest()
+                            val latlang:HashMap<String,String> = HashMap<String,String>()
+                            latlang.put("nombre", binding.txtName.text.toString())
+                            latlang.put("email", binding.txtEmailLogin.text.toString())
+                            latlang.put("bio", "")
+                            latlang.put("password", binding.txtPassReg.text.toString())
+                            database.child("registros").push().setValue(latlang)
+                            showTest(binding.txtEmailLogin.text.toString())
                         }else{
                             showAlert()
                         }
@@ -47,9 +48,10 @@ class Register : AppCompatActivity() {
         }
     }
 
-    private fun showTest(){
+    private fun showTest(email:String){
 
         val testIntent = Intent(this, MainActivity::class.java).apply {
+            putExtra("email", email)
         }
         startActivity(testIntent)
     }
