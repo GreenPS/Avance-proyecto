@@ -5,11 +5,13 @@ import android.content.pm.PackageManager
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.greenps.View.Login
 import com.example.greenps.View.Perfil
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -19,7 +21,6 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.example.greenps.databinding.ActivityMainBinding
-import com.example.greenps.databinding.ActivityRegisterBinding
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
 
@@ -43,27 +44,34 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         createFragment()
         setup()
 
-
-        //val botonPerfil = findViewById<CardView>(R.id.profilebutton)
-        //val botonComent = findViewById<ImageButton>(R.id.menubtn)
-
-        binding.comments.setOnClickListener(){
-            val intent = Intent(this, Comentarios::class.java)
-            startActivity(intent)
-        }
-
-        binding.perfile.setOnClickListener(){
-            val intent = Intent(this, Perfil::class.java)
-            startActivity(intent)
-        }
-
-
     }
 
     private fun setup(){
         binding.menubtn.setOnClickListener{
             FirebaseAuth.getInstance().signOut()
-            onBackPressed()
+            val testIntent = Intent(this, Login::class.java).apply {
+            }
+            startActivity(testIntent)
+        }
+
+        binding.comments.setOnClickListener(){
+            val intento = Intent(this,Comentarios::class.java).apply {
+            }
+            startActivity(intento)
+        }
+
+        binding.perfile.setOnClickListener(){
+            val intent = Intent(this, Perfil::class.java).apply {
+            }
+            startActivity(intent)
+        }
+
+        binding.mapacenter.setOnClickListener(){
+            Toast.makeText(this, "Ya estas en Mapa", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.blog.setOnClickListener(){
+            Toast.makeText(this, "Funcionalidad en mantenimiento", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -81,6 +89,18 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
     }
 
     private fun createMarker() {
+        val coordinates = LatLng(4.657516, -74.094293)
+        val marker = MarkerOptions().position(coordinates).title("Parque Central Simón Bolívar")
+        map.addMarker(marker)
+        map.animateCamera(
+            CameraUpdateFactory.newLatLngZoom(coordinates, 12f),
+            4000,
+            null
+        )
+
+    }
+
+    private fun createPersonalMarker() {
         val coordinates = LatLng(4.657516, -74.094293)
         val marker = MarkerOptions().position(coordinates).title("Parque Central Simón Bolívar")
         map.addMarker(marker)

@@ -18,10 +18,10 @@ class UserPass : AppCompatActivity() {
         binding = ActivityUserPassBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setup1()
+        setup()
     }
 
-    private fun setup1() {
+    private fun setup() {
         binding.btnLogin.setOnClickListener {
             if (binding.txtEmailLogin.text.isNotEmpty() && binding.txtPassLogin.text.isNotEmpty()) {
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(
