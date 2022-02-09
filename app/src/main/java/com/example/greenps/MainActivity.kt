@@ -13,6 +13,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.greenps.View.Login
+import com.example.greenps.View.MapsFire
 import com.example.greenps.View.Perfil
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -29,6 +30,7 @@ import java.util.*
 import kotlin.collections.HashMap
 import com.google.firebase.database.DataSnapshot
 import com.example.greenps.databinding.ActivityMainBinding
+import com.google.android.gms.maps.model.Marker
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -38,6 +40,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
     val mDatabase = Firebase.database
     private lateinit var database: DatabaseReference
     private lateinit var binding: ActivityMainBinding
+    var tmpRealtimeMarker: ArrayList<Marker> = ArrayList<Marker>()
+    var realtimeMarker: ArrayList<Marker> = ArrayList<Marker>()
 
     enum class ProviderType{
         BASIC
@@ -67,7 +71,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         mDatabase
         database = Firebase.database.reference
 
-        subirLatLonFirebase()
         setup(nombre?: "",email?: "",bio?: "",password?: "")
 
     }
@@ -81,10 +84,9 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         }
 
         binding.comments.setOnClickListener(){
-            Toast.makeText(this, nombre, Toast.LENGTH_SHORT).show()
-            //val intento = Intent(this,Comentarios::class.java).apply {
-            //}
-            //startActivity(intento)
+            val intento = Intent(this,Comentarios::class.java).apply {
+            }
+            startActivity(intento)
         }
 
         binding.perfile.setOnClickListener(){
@@ -102,6 +104,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         }
 
         binding.blog.setOnClickListener(){
+            subirLatLonFirebase()
             Toast.makeText(this, "Funcion por implementar", Toast.LENGTH_SHORT).show()
         }
     }
@@ -111,20 +114,35 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         mapFragment.getMapAsync(this)
     }
 
+
+
     override fun onMapReady(googleMap: GoogleMap) {
         map= googleMap
 
         val markListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                for (snapshot in dataSnapshot.children) {
 
+                for (marker in realtimeMarker) {
+                    marker.remove()
                 }
+
+                for (snapshot in dataSnapshot.children) {
+                    val mp = snapshot.getValue(MapsFire::class.java)
+                    val latitud: Double? = mp?.getLatitud()
+                    val longitud: Double? = mp?.getLongitud()
+
+                    val markerOptions = MarkerOptions()
+                    markerOptions.position(LatLng(latitud!!, longitud!!))
+                    tmpRealtimeMarker.add(map.addMarker(markerOptions)!!)
+                }
+                realtimeMarker.clear()
+                realtimeMarker.addAll(tmpRealtimeMarker)
             }
             override fun onCancelled(databaseError: DatabaseError) {
 
             }
         }
-        database.addValueEventListener(markListener)
+        database.child("usuarios").addValueEventListener(markListener)
 
         createMarker()
         map.setOnMyLocationButtonClickListener(this)
@@ -248,14 +266,10 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
 
                     val latlang:HashMap<String,Double> = HashMap<String,Double>()
 
-
-
                     latlang.put("latitud", location.latitude)
-                    latlang.put("longitud", location.longitude )
+                    latlang.put("longitud", location.longitude)
 
                     database.child("usuarios").push().setValue(latlang)
-
-
                 }
             }
     }
