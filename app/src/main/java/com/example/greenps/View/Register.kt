@@ -39,7 +39,7 @@ class Register : AppCompatActivity() {
                             latlang.put("bio", "")
                             latlang.put("password", binding.txtPassReg.text.toString())
                             database.child("registros").push().setValue(latlang)
-                            showTest(binding.txtEmailLogin.text.toString())
+                            showTest(binding.txtName.text.toString(),binding.txtEmailLogin.text.toString(),"",binding.txtPassReg.text.toString())
                         }else{
                             showAlert()
                         }
@@ -48,10 +48,13 @@ class Register : AppCompatActivity() {
         }
     }
 
-    private fun showTest(email:String){
+    private fun showTest(nombre:String,email:String,bio:String,password:String){
 
         val testIntent = Intent(this, MainActivity::class.java).apply {
+            putExtra("nombre", nombre)
             putExtra("email", email)
+            putExtra("bio", "")
+            putExtra("password", password)
         }
         startActivity(testIntent)
     }

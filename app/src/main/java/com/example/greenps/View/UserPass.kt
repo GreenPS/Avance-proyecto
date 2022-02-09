@@ -30,7 +30,7 @@ class UserPass : AppCompatActivity() {
                 ).addOnCompleteListener {
                     if (it.isSuccessful) {
                         //string vacio, no deberia pasar
-                        showTest(binding.txtEmailLogin.text.toString())
+                        showTest("",binding.txtEmailLogin.text.toString(),"",binding.txtPassLogin.text.toString())
                     } else {
                         showAlert()
                     }
@@ -39,10 +39,13 @@ class UserPass : AppCompatActivity() {
         }
     }
 
-    private fun showTest(email: String){
+    private fun showTest(nombre:String,email:String,bio:String,password:String){
 
         val testIntent = Intent(this, MainActivity::class.java).apply {
+            putExtra("nombre", "")
             putExtra("email", email)
+            putExtra("bio", "")
+            putExtra("password", password)
         }
         startActivity(testIntent)
     }

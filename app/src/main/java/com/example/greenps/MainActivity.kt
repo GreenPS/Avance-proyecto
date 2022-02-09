@@ -58,18 +58,21 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         createFragment()
 
         val bundle = intent.extras
+        val nombre = bundle?.getString("nombre")
         val email = bundle?.getString("email")
+        val bio = bundle?.getString("bio")
+        val password = bundle?.getString("password")
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         mDatabase
         database = Firebase.database.reference
 
         subirLatLonFirebase()
-        setup(email?: "")
+        setup(nombre?: "",email?: "",bio?: "",password?: "")
 
     }
 
-    private fun setup(email:String){
+    private fun setup(nombre:String,email:String,bio:String,password:String,){
         binding.menubtn.setOnClickListener{
             FirebaseAuth.getInstance().signOut()
             val testIntent = Intent(this, Login::class.java).apply {
@@ -78,15 +81,18 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         }
 
         binding.comments.setOnClickListener(){
-            val intento = Intent(this,Comentarios::class.java).apply {
-            }
-            startActivity(intento)
+            Toast.makeText(this, nombre, Toast.LENGTH_SHORT).show()
+            //val intento = Intent(this,Comentarios::class.java).apply {
+            //}
+            //startActivity(intento)
         }
 
         binding.perfile.setOnClickListener(){
-            Toast.makeText(this, email, Toast.LENGTH_SHORT).show()
             val intent = Intent(this, Perfil::class.java).apply {
+                putExtra("nombre", nombre)
                 putExtra("email", email)
+                putExtra("bio", bio)
+                putExtra("password", password)
             }
             startActivity(intent)
         }
@@ -96,7 +102,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         }
 
         binding.blog.setOnClickListener(){
-            Toast.makeText(this, "Funcionalidad en mantenimiento", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Funcion por implementar", Toast.LENGTH_SHORT).show()
         }
     }
 
