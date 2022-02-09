@@ -30,6 +30,7 @@ import java.util.*
 import kotlin.collections.HashMap
 import com.google.firebase.database.DataSnapshot
 import com.example.greenps.databinding.ActivityMainBinding
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.Marker
 import com.google.firebase.auth.FirebaseAuth
 
@@ -133,6 +134,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
 
                     val markerOptions = MarkerOptions()
                     markerOptions.position(LatLng(latitud!!, longitud!!))
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker20))
                     tmpRealtimeMarker.add(map.addMarker(markerOptions)!!)
                 }
                 realtimeMarker.clear()
@@ -153,6 +155,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
     private fun createMarker() {
         val coordinates = LatLng(4.657516, -74.094293)
         val marker = MarkerOptions().position(coordinates).title("Parque Central Simón Bolívar")
+            .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker20))
         map.addMarker(marker)
         map.animateCamera(
             CameraUpdateFactory.newLatLngZoom(coordinates, 12f),
